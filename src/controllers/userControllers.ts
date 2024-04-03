@@ -29,8 +29,24 @@ const loginUser = async (req: Request, res: Response)=>{
     res.json({status: true, message: {token, user}});
 }
 
+const deleteUser = async (req: Request, res: Response)=>{
+    const {email} = req.body;
+    const { deletedCount } = await User.deleteOne({email});
+    if(deletedCount < 1) res.json({status: false, message: "Failed to delete User"});
+    else res.json({status: true, message: "Deleted."});
+}
+
+const updateUser = async (req: Request, res: Response)=>{
+    const {id, name, email, password} = req.body;
+    const user = await User.updateOne({_id: id}, {name, email, password});
+    if(user.modifiedCount > 0) res.json({status: true, message: "User updated successfully"});
+    else res.json({status: false, message: "Failed to update User"});
+}
+
 export {
     registerUser,
     getAllUsers,
     loginUser,
+    deleteUser,
+    updateUser,
 }
