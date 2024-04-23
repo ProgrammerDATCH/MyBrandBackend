@@ -23,9 +23,9 @@ const getAllUsers = async (req: Request, res: Response)=>{
 const loginUser = async (req: Request, res: Response)=>{
     const {email, password} = req.body;
     const user = await findUserByEmail(email);
-    if(!user) return res.json({status: false, message: "Invalid credentials"});
+    if(!user) return res.json({status: false, message: "Invalid Email or Password"});
     const passwordMatches = await comparePassword(password, user.password);
-    if(!passwordMatches) res.json({status: false, message: "Invalid password"});
+    if(!passwordMatches) return res.json({status: false, message: "Invalid Email or Password"});
     const token = generateToken(user.id);
     res.json({status: true, message: {token, user}});
 }
