@@ -1,23 +1,23 @@
 import mongoose from "mongoose";
 
-const blogchema = new mongoose.Schema({
-    title: {
+const commentchema = new mongoose.Schema({
+    name: {
         type: "string",
         required: true
     },
-    description: {
+    email: {
         type: "string",
         required: true
     },
-    image: {
+    comment: {
         type: "string",
         required: true
     },
-    userId: {
+    blogId: {
         type: "string",
         required: true
     }
 });
 
-const Blog = mongoose.model("Blog", blogchema);
-export default Blog;
+const Comment = mongoose.model("Comment", commentchema);
+export default Comment;

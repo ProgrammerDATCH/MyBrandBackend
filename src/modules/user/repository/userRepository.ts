@@ -4,8 +4,8 @@ const createUser = async (body: any) => {
     return await User.create(body);
 }
 
-const getUsers = async (userId: string) => {
-    return await User.find({userId})
+const getUserInfo = async (userId: string) => {
+    return await User.findOne({_id: userId})
 }
 
 const getAllRegisteredUsers = async () => {
@@ -30,7 +30,7 @@ const updateUserByEmail = async (email: string, data: any) => {
 
 export {
     createUser,
-    getUsers,
+    getUserInfo,
     findUserByEmail,
     deleteUserByEmail,
     updateUserByEmail,

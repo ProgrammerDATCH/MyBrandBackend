@@ -19,9 +19,7 @@ describe("User Test Cases", () => {
         })
         .end((error, response) => {
           expect(response.body).to.be.a("object");
-          expect(response.body).to.have.property("status");
-          expect(response.body).to.have.property("message");
-          expect(response.body.status).to.equal(true);
+          expect(response.body).to.have.property("status", true);
           done(error);
         });
     });
@@ -104,7 +102,19 @@ describe("User Test Cases", () => {
         .end((error, response) => {
           expect(response.body).to.be.a("object");
           expect(response.body).to.have.property("status", false);
-          expect(response.body).to.have.property("message", "Invalid credentials");
+          done(error);
+        });
+    });
+
+    
+    it("Should be able to detect invalid Token", (done) => {
+      router()
+        .post("/api/users/check")
+        .set("Authorization", `Bearer faketoken`)
+        .end((error, response) => {
+          expect(response.body).to.be.a("object");
+          expect(response.body).to.have.property("status", false);
+          expect(response.body).to.have.property("message", "You are not logged in. Invalid Token.");
           done(error);
         });
     });

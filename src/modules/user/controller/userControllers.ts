@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { comparePassword, encryptPassword, generateToken } from '../../../utils'
-import { createUser, deleteUserByEmail, findUserByEmail, getAllRegisteredUsers, updateUserByEmail } from "../repository/userRepository";
+import { createUser, deleteUserByEmail, findUserByEmail, getAllRegisteredUsers, getUserInfo, updateUserByEmail } from "../repository/userRepository";
 
 const registerUser = async (req: Request, res: Response)=>{
     const {name, email, password} = req.body;
@@ -18,6 +18,10 @@ const registerUser = async (req: Request, res: Response)=>{
 
 const getAllUsers = async (req: Request, res: Response)=>{
     res.json({status: true, message: await getAllRegisteredUsers()});
+}
+
+const checkUser = async (req: Request, res: Response)=>{
+    res.json({status: true, message: await getUserInfo((req as any).userId)});
 }
 
 const loginUser = async (req: Request, res: Response)=>{
@@ -54,4 +58,5 @@ export {
     loginUser,
     deleteUser,
     updateUser,
+    checkUser
 }

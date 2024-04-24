@@ -1,6 +1,6 @@
 import Blog from "../../../database/models/Blog";
 
-const createBlog = async (newBlog: Record<string, string>) => {
+const createBlog = async (newBlog: Record<string, any>) => {
     return await Blog.create(newBlog)
 }
 

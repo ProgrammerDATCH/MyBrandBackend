@@ -124,14 +124,16 @@
 
 
 import express from 'express'
-import { registerUser, getAllUsers, loginUser, updateUser, deleteUser } from '../modules/user/controller/userControllers';
+import { registerUser, getAllUsers, loginUser, updateUser, deleteUser, checkUser } from '../modules/user/controller/userControllers';
+import { Auth } from '../middlewares';
 
 const userRoutes = express.Router();
 
 userRoutes.post("/register", registerUser)
 userRoutes.get("/users", getAllUsers)
+userRoutes.post("/check", Auth, checkUser)
 userRoutes.post("/login", loginUser)
-userRoutes.patch("/update", updateUser)
-userRoutes.delete("/delete", deleteUser)
+userRoutes.patch("/update", Auth, updateUser)
+userRoutes.delete("/delete", Auth, deleteUser)
 
 export default userRoutes;

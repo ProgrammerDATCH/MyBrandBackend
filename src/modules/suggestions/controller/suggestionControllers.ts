@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { createSuggestion, deleteSuggestionById, findSuggestionById, getAllSuggestions } from "../repository/suggestionRepositories";
+import sendEmail from "../../../middlewares/sendEmail";
 
 const addNewSuggestion = async (req: Request, res: Response) => {
     const {name, email, subject, message} = req.body;
@@ -13,6 +14,7 @@ const addNewSuggestion = async (req: Request, res: Response) => {
         message
     }
     const newCreatedSuggestion = await createSuggestion(newSuggestion)
+    await sendEmail(`MyBrand request from ${name}`, `<p><h2>${subject}</h2><p>${message}</p><p>Respond to: <b>${email}</b><br>Names: <b>${name}</b></p></p>`);
     if(!newCreatedSuggestion) return res.json({status: false, message: "Suggestion was not created."})
     return res.json({status: true, message: "Suggestion was created.", id: newCreatedSuggestion._id})
 }

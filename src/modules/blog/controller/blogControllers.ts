@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { createBlog, deleteBlogById, findBlogById, getAllBlogs } from "../repository/blogRepositories";
+import uploadImage from "../../../middlewares/uploadImage";
 
 const addNewBlog = async (req: Request, res: Response) => {
     const {title, description, image} = req.body;
+    const imageLink = await uploadImage(image);
     const newBlog = {
         title,
         description,
-        image
+        image: imageLink,
+        userId: (req as any).userId,
     }
     const newCreatedBlog = await createBlog(newBlog)
     if(!newCreatedBlog) return res.json({status: false, message: "Blog was not created."})
