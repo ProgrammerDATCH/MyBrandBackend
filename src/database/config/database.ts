@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-mongoose.connect("mongodb://localhost:27017/mybrand").then(()=>{
+const db_link = process.env.MONGO_DB_URL;
+
+mongoose.connect(db_link).then(()=>{
     console.log("Connected")
 }).catch(err=>{
     console.log("Connectiong to database error: ", err)
