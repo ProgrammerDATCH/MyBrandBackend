@@ -8,6 +8,11 @@ const generateToken = (userId: string) => {
     return token;
 }
 
+const generateAdminToken = (adminId: string) => {
+    const token = jwt.sign({adminId}, JWT_KEY, {expiresIn: '1d'});
+    return token;
+}
+
 
 function convertToHumanFriendlyDate(dateString) {
     const date = new Date(dateString);
@@ -24,6 +29,7 @@ function convertToHumanFriendlyDate(dateString) {
 
 export {
     generateToken,
+    generateAdminToken,
     encryptPassword,
     comparePassword,
     convertToHumanFriendlyDate,
