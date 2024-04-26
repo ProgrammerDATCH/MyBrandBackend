@@ -44,6 +44,29 @@ describe("Admin Test Cases", () => {
     });
 
     
+    it("Should be able to get admin Dashboard Statistics", (done) => {
+      router()
+        .get("/api/admin/dashboard")
+        .set("Authorization", `Bearer ${token}`)
+        .end((error, response) => {
+          expect(response.body).to.be.a("object");
+          expect(response.body).to.have.property("status", true);
+          expect(response.body).to.have.property("message").to.be.an("object");
+          done(error);
+        });
+    });
+    
+    it("Should be not able to get admin Dashboard Statistics without token", (done) => {
+      router()
+        .get("/api/admin/dashboard")
+        .end((error, response) => {
+          expect(response.body).to.be.a("object");
+          expect(response.body).to.have.property("status", false);
+          expect(response.body).to.have.property("message", "You are not logged in as Admin.");
+          done(error);
+        });
+    });
+    
     it("Should be able to detect invalid Token", (done) => {
       router()
         .post("/api/admin/check")

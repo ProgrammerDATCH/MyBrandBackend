@@ -1,10 +1,19 @@
 import { Request, Response } from "express";
 import { generateAdminToken } from '../../../utils'
-import { findAdmin, getAdminInfo } from "../repository/adminRepository";
+import { findAdmin, getAdminInfo, totalBlogs, totalSuggestions, totalUsers } from "../repository/adminRepository";
 
 
 const checkAdmin = async (req: Request, res: Response)=>{
     res.json({status: true, message: await getAdminInfo((req as any).adminId)});
+}
+
+const dashboardStats = async (req: Request, res: Response)=>{
+    const dashboard = {
+        users: await totalUsers(),
+        suggestions: await totalSuggestions(),
+        blogs: await totalBlogs()
+    }
+    res.json({status: true, message: dashboard});
 }
 
 const loginAdmin = async (req: Request, res: Response)=>{
@@ -17,5 +26,6 @@ const loginAdmin = async (req: Request, res: Response)=>{
 
 export {
     checkAdmin,
-    loginAdmin
+    loginAdmin,
+    dashboardStats
 }

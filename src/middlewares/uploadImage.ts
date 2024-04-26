@@ -20,11 +20,9 @@ const uploadImage = (image: any) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(image, opts, (error: any, result: any) => {
       if (result && result.secure_url) {
-        console.log(result.secure_url);
         return resolve(result.secure_url);
       }
-      console.log(error.message);
-      return reject({ message: error.message });
+      // return reject({ message: error.message });
     });
   });
 };
