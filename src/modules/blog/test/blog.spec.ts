@@ -57,6 +57,9 @@ describe("Blog Test Cases", () => {
     router()
       .delete("/api/users/delete")
       .set("Authorization", `Bearer ${token}`)
+      .send({
+        email: "testuserforblog@gmail.com",
+      })
       .end((error, response) => {
         done();
       });
