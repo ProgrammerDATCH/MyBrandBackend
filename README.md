@@ -4,7 +4,7 @@ This is the backend for the MY BRAND website, created by David TUYISHIME. It is 
 
 ### API Documentation
 
-API documentation can be found on [https://mybrandbackend-bmve.onrender.com/api-docs](https://mybrandbackend-bmve.onrender.com/api-docs).
+API documentation can be found on [https://mybrandbackend-bmve.onrender.com/api/api-docs](https://mybrandbackend-bmve.onrender.com/api/api-docs).
 
 ### Hosted Backend
 
@@ -62,21 +62,21 @@ npm start
 | NO | METHOD | ENDPOINT | STATUS | ACCESS | DESCRIPTION |
 |----|--------|----------|--------|--------|-------------|
 | 1  | GET   | / | 200    | Public | Welcome To My Brand |
-| 2  | POST   | /api-docs | 200    | Public | Swagger API Documentation |
-| 3  | POST   | /users/register | 200    | Public | Register a new user |
-| 4  | GET    | /users/users     | 200    | Admin  | Get all users |
-| 5  | POST   | /users/check     | 200    | User   | Check user status |
-| 6  | POST   | /users/login     | 200    | Public | User login |
-| 7  | PATCH  | /users/update    | 200    | User   | Update user information |
-| 8  | DELETE | /users/delete    | 200    | Admin  | Delete user |
-| 9  | POST   | /suggestion/add  | 200    | Public | Add a new suggestion |
-| 10  | GET    | /suggestion/suggestions | 200 | Admin  | Get all suggestions |
-| 11  | DELETE | /suggestion/delete     | 200 | Admin  | Delete a suggestion |
-| 12 | POST   | /blog/add               | 200 | User   | Add a new blog |
-| 13 | GET    | /blog/blogs             | 200 | Public | Get all blogs |
-| 14 | GET    | /blog/{id}              | 200 | Public | Get a blog by ID |
-| 15 | DELETE | /blog/delete            | 200 | Admin  | Delete a blog |
-| 16 | POST   | /admin/check            | 200 | Admin  | Check admin status |
-| 17 | POST   | /admin/login            | 200 | Admin  | Admin login |
-| 18 | GET    | /admin/dashboard        | 200 | Admin  | Get dashboard statistics |
+| 2  | POST   | /api/api-docs | 200    | Public | Swagger API Documentation |
+| 3  | POST   | /api/users/register | 200    | Public | Register a new user |
+| 4  | GET    | /api/users/users     | 200    | Admin  | Get all users |
+| 5  | POST   | /api/users/check     | 200    | User   | Check user status |
+| 6  | POST   | /api/users/login     | 200    | Public | User login |
+| 7  | PATCH  | /api/users/update    | 200    | User   | Update user information |
+| 8  | DELETE | /api/users/delete    | 200    | Admin  | Delete user |
+| 9  | POST   | /api/suggestion/add  | 200    | Public | Add a new suggestion |
+| 10  | GET    | /api/suggestion/suggestions | 200 | Admin  | Get all suggestions |
+| 11  | DELETE | /api/suggestion/delete     | 200 | Admin  | Delete a suggestion |
+| 12 | POST   | /api/blog/add               | 200 | User   | Add a new blog |
+| 13 | GET    | /api/blog/blogs             | 200 | Public | Get all blogs |
+| 14 | GET    | /api/blog/{id}              | 200 | Public | Get a blog by ID |
+| 15 | DELETE | /api/blog/delete            | 200 | Admin  | Delete a blog |
+| 16 | POST   | /api/admin/check            | 200 | Admin  | Check admin status |
+| 17 | POST   | /api/admin/login            | 200 | Admin  | Admin login |
+| 18 | GET    | /api/admin/dashboard        | 200 | Admin  | Get dashboard statistics |
 
