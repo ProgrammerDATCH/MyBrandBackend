@@ -4,7 +4,7 @@ This is the backend for the MY BRAND website, created by David TUYISHIME. It is 
 
 ### API Documentation
 
-API documentation can be found on [https://mybrandbackend-4e8h.onrender.com/api-docs](https://mybrandbackend-4e8h.onrender.com/api/api-docs).
+API documentation can be found on [https://mybrandbackend-4e8h.onrender.com/api-docs](https://mybrandbackend-4e8h.onrender.com/api-docs).
 
 ### Hosted Backend
 
