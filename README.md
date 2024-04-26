@@ -4,11 +4,11 @@ This is the backend for the MY BRAND website, created by David TUYISHIME. It is 
 
 ### API Documentation
 
-API documentation can be found on [https://mybrandbackend-bmve.onrender.com/api/api-docs](https://mybrandbackend-bmve.onrender.com/api/api-docs).
+API documentation can be found on [https://mybrandbackend-4e8h.onrender.com/api-docs](https://mybrandbackend-4e8h.onrender.com/api/api-docs).
 
 ### Hosted Backend
 
-The backend is hosted on [https://mybrandbackend-bmve.onrender.com/](https://mybrandbackend-bmve.onrender.com/).
+The backend is hosted on [https://mybrandbackend-4e8h.onrender.com/](https://mybrandbackend-4e8h.onrender.com/).
 
 
 ### Installation
@@ -62,7 +62,7 @@ npm start
 | NO | METHOD | ENDPOINT | STATUS | ACCESS | DESCRIPTION |
 |----|--------|----------|--------|--------|-------------|
 | 1  | GET   | / | 200    | Public | Welcome To My Brand |
-| 2  | POST   | /api/api-docs | 200    | Public | Swagger API Documentation |
+| 2  | POST   | /api-docs | 200    | Public | Swagger API Documentation |
 | 3  | POST   | /api/users/register | 200    | Public | Register a new user |
 | 4  | GET    | /api/users/users     | 200    | Admin  | Get all users |
 | 5  | POST   | /api/users/check     | 200    | User   | Check user status |

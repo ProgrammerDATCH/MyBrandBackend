@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:9090/api',
+        url: 'https://mybrandbackend-4e8h.onrender.com/api',
       },
     ],
   },
