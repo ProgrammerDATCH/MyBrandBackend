@@ -4,6 +4,10 @@ const createBlog = async (newBlog: Record<string, any>) => {
     return await Blog.create(newBlog)
 }
 
+const updateBlogById = async (id: string, body: Record<string, any>) => {
+    return await Blog.updateOne({_id: id}, body)
+}
+
 const getAllBlogs = async () => {
     return await Blog.find()
 }
@@ -20,5 +24,6 @@ export {
     createBlog,
     deleteBlogById,
     findBlogById,
-    getAllBlogs
+    getAllBlogs,
+    updateBlogById
 }

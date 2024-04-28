@@ -20,7 +20,12 @@
       "src/index.ts",
       "src/modules/**/controller/*.ts",
       "src/modules/**/test/*.ts",
-      "src/modules/**/repository/*.ts"
+      "src/modules/**/repository/*.ts",
+      "src/middlewares/swaggerAPIs.ts",
+      "src/middlewares/swaggerConfig.ts",
+      "src/middlewares/uploadImage.ts",
+      "src/middlewares/validation.ts",
+      "src/utils/index.ts"
     ],
     "reporter": [
       "html",

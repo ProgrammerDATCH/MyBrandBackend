@@ -3,7 +3,7 @@ import Joi from 'joi';
 const nameRegex = /^(?![0-9])[a-zA-Z0-9]{5,}$/;
 const emailRegex = /^[a-zA-Z][a-zA-Z0-9._]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-const idRegex = /^[0-9a-fA-F]{24}$/;
+
 
 const login = Joi.object({
   email: Joi.string().email().required(),
@@ -12,9 +12,14 @@ const login = Joi.object({
 
 const registration = Joi.object({
   name: Joi.string().pattern(nameRegex).required(),
-  email: Joi.string().email().regex(emailRegex).required(),
-  password: Joi.string().pattern(passwordRegex).required(),
+  email: Joi.string().email().regex(emailRegex).required().messages({
+    'string.pattern.base': 'Please use your real email',
+  }),
+  password: Joi.string().pattern(passwordRegex).required().messages({
+    'string.pattern.base': 'Please use combination of Uppercase, lowercase, special characters, and at least 8 characters on Password',
+  }),
 });
+
 
 const emailVerification = Joi.object({
   email: Joi.string().email().required(),

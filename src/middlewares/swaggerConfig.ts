@@ -20,7 +20,6 @@ const options = {
       }
     ],
   },
-  // apis: ['./src/routes/*.ts'],
   apis: ['./src/middlewares/swaggerAPIs.ts'],
 };
 

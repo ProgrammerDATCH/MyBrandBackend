@@ -43,10 +43,39 @@
  *               - email
  *               - password
  *     responses:
- *       200:
+ *       201:
  *         description: User registered successfully
  *       400:
+ *         description: Bad Request
+ *       409:
  *         description: User already exists
+ */
+
+/**
+ * @swagger
+ * /users/verify:
+ *   post:
+ *     summary: Verify User Email
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               token:
+ *                 type: string
+ *             required:
+ *               - email
+ *               - token
+ *     responses:
+ *       200:
+ *         description: Email verified successfully
+ *       400:
+ *         description: No User or Invalid Token
  */
 
 
@@ -55,7 +84,7 @@
  * @swagger
  * /users/users:
  *   get:
- *     summary: Get all users
+ *     summary: Get all users (by ADMIN only)
  *     tags: [User]
  *     security:
  *       - bearerAuth: []
@@ -75,7 +104,9 @@
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: User status
+ *         description: User details
+ *       400:
+ *         description: Invalid Token
  */
 
 
@@ -127,6 +158,7 @@
  *               email:
  *                 type: string
  *             required:
+ *               - name
  *               - email
  *     responses:
  *       200:
@@ -140,7 +172,7 @@
  * @swagger
  * /users/delete:
  *   delete:
- *     summary: Delete user
+ *     summary: Delete user (by ADMIN only)
  *     tags: [User]
  *     security:
  *       - bearerAuth: []
@@ -185,7 +217,9 @@
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Admin status
+ *         description: Admin Details
+ *       400:
+ *         description: Invalid Token
  */
 
 
@@ -273,8 +307,39 @@
  *               - description
  *               - image
  *     responses:
- *       200:
+ *       201:
  *         description: Blog added successfully
+ *       400:
+ *         description: Bad Request
+ */
+
+/**
+ * @swagger
+ * /blog/update:
+ *   post:
+ *     summary: Update a blog (by ADMIN only)
+ *     tags: [Blog]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *             required:
+ *               - title
+ *               - description
+ *     responses:
+ *       200:
+ *         description: Blog updated successfully
+ *       400:
+ *         description: Bad Request
  */
 
 
@@ -375,8 +440,10 @@
  *               - subject
  *               - message
  *     responses:
- *       200:
+ *       201:
  *         description: Suggestion added successfully
+ *       400:
+ *         description: Bad Request
  */
 
 
@@ -385,13 +452,15 @@
  * @swagger
  * /suggestion/suggestions:
  *   get:
- *     summary: Get all suggestions
+ *     summary: Get all suggestions (by ADMIN only)
  *     tags: [Suggestion]
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of all suggestions
+ *       400:
+ *         description: Not logged in as Admin
  */
 
 
@@ -400,7 +469,7 @@
  * @swagger
  * /suggestion/delete:
  *   delete:
- *     summary: Delete a suggestion
+ *     summary: Delete a suggestion (by ADMIN only)
  *     tags: [Suggestion]
  *     security:
  *       - bearerAuth: []
@@ -419,8 +488,6 @@
  *       200:
  *         description: Suggestion deleted successfully
  */
-
-
 
 //---------------------END----------------
 

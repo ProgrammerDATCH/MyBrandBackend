@@ -8,12 +8,12 @@ export const Auth = (req: Request, res: Response, next: NextFunction) => {
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-        return res.json({status: false, message: "You are not logged in."});
+        return res.status(401).json({status: false, message: "You are not logged in."});
     }
 
     jwt.verify(token, JWT_KEY, (err, decoded) => {
         if (err) {
-            return res.json({status: false, message: "You are not logged in. Invalid Token."});
+            return res.status(401).json({status: false, message: "You are not logged in. Invalid Token."});
         }
         (req as any).userId = (decoded as any).userId;
         next();

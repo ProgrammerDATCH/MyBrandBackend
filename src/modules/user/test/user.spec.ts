@@ -14,8 +14,8 @@ describe("User Test Cases", () => {
         .post("/api/users/register")
         .send({
           name: "TestingUser",
-          email: "testuser@gmail.com",
-          password: "PasswordForUser",
+          email: "programmerdatch@gmail.com",
+          password: "PasswordForUser@123",
         })
         .end((error, response) => {
           expect(response.body).to.be.a("object");
@@ -29,8 +29,8 @@ describe("User Test Cases", () => {
         .post("/api/users/register")
         .send({
           name: "TestingUser",
-          email: "testuser@gmail.com",
-          password: "PasswordForUser",
+          email: "programmerdatch@gmail.com",
+          password: "PasswordForUser@123",
         })
         .end((error, response) => {
           expect(response.body).to.be.a("object");
@@ -46,8 +46,8 @@ describe("User Test Cases", () => {
       router()
         .post("/api/users/login")
         .send({
-          email: "testuser@gmail.com",
-          password: "PasswordForUser",
+          email: "programmerdatch@gmail.com",
+          password: "PasswordForUser@123",
         })
         .end((error, response) => {
           expect(response.body).to.be.a("object");
@@ -66,8 +66,8 @@ describe("User Test Cases", () => {
         .patch("/api/users/update")
         .set("Authorization", `Bearer ${token}`)
         .send({
-          name: "TestingUser-Updated",
-          email: "testuser@gmail.com",
+          name: "TestingUserUpdated",
+          email: "programmerdatch@gmail.com",
         })
         .end((error, response) => {
           expect(response.body).to.be.a("object");
@@ -82,7 +82,7 @@ describe("User Test Cases", () => {
         .delete("/api/users/delete")
         .set("Authorization", `Bearer ${token}`)
         .send({
-          email: "testuser@gmail.com",
+          email: "programmerdatch@gmail.com",
         })
         .end((error, response) => {
           expect(response.body).to.be.a("object");

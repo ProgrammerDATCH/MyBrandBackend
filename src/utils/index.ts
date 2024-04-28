@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import { encryptPassword, comparePassword } from './passwordUtils';
 
 const JWT_KEY = process.env.JWT_KEY || 'SECRET';
+const JWT_KEY_ADMIN = process.env.JWT_KEY_ADMIN || 'SECRETADMIN';
 
 const generateToken = (userId: string) => {
     const token = jwt.sign({userId}, JWT_KEY, {expiresIn: '1d'});
@@ -9,7 +10,7 @@ const generateToken = (userId: string) => {
 }
 
 const generateAdminToken = (adminId: string) => {
-    const token = jwt.sign({adminId}, JWT_KEY, {expiresIn: '1d'});
+    const token = jwt.sign({adminId}, JWT_KEY_ADMIN, {expiresIn: '1d'});
     return token;
 }
 

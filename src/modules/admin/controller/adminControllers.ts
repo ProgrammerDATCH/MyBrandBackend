@@ -4,7 +4,7 @@ import { findAdmin, getAdminInfo, totalBlogs, totalSuggestions, totalUsers } fro
 
 
 const checkAdmin = async (req: Request, res: Response)=>{
-    res.json({status: true, message: await getAdminInfo((req as any).adminId)});
+    res.status(200).json({status: true, message: await getAdminInfo((req as any).adminId)});
 }
 
 const dashboardStats = async (req: Request, res: Response)=>{
@@ -13,15 +13,15 @@ const dashboardStats = async (req: Request, res: Response)=>{
         suggestions: await totalSuggestions(),
         blogs: await totalBlogs()
     }
-    res.json({status: true, message: dashboard});
+    res.status(200).json({status: true, message: dashboard});
 }
 
 const loginAdmin = async (req: Request, res: Response)=>{
     const {email, password} = req.body;
     const admin = await findAdmin(email, password);
-    if(!admin) return res.json({status: false, message: "Invalid Email or Password"});
+    if(!admin) return res.status(401).json({status: false, message: "Invalid Email or Password"});
     const token = generateAdminToken(admin.id);
-    res.json({status: true, message: {token, admin}});
+    res.status(200).json({status: true, message: {token, admin}});
 }
 
 export {

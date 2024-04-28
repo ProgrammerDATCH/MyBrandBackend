@@ -9,9 +9,9 @@ function registerAndLoginUser(callback: Function) {
   router()
     .post("/api/users/register")
     .send({
-      name: "Test User",
-      email: "testuserforblog@gmail.com",
-      password: "PasswordForUser",
+      name: "TestUser",
+      email: "datchguest@gmail.com",
+      password: "PasswordForUser@123",
     })
     .end((error, response) => {
       if (error) {
@@ -21,8 +21,8 @@ function registerAndLoginUser(callback: Function) {
       router()
         .post("/api/users/login")
         .send({
-          email: "testuserforblog@gmail.com",
-          password: "PasswordForUser",
+          email: "datchguest@gmail.com",
+          password: "PasswordForUser@123",
         })
         .end((error, response) => {
           if (error) {

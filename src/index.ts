@@ -3,7 +3,7 @@ dotenv.config();
 import express, { Request, Response } from 'express';
 import router from './routes';
 import cors from 'cors';
-import swaggerSetup from '../swaggerConfig';
+import swaggerSetup from './middlewares/swaggerConfig';
 import './database/config/database'
 import requestLogger from './middlewares/requestLogger';
 import bodyParser from 'body-parser';
