@@ -15,7 +15,6 @@ app.use(cors());
 app.use(compression());
 
 
-swaggerSetup(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +26,7 @@ app.use(requestLogger)
 
 app.get("/", (req: Request, res: Response) => {res.json({ message: "Welcome To My Brand" }); });
 app.use("/api", router)
+swaggerSetup(app);
 app.use((req, res, next) => { res.status(404).json({resStatus: false, resMsg: `[${req.method}] on [${req.path}] not allowed!` });});
 
 

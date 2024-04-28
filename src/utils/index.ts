@@ -13,8 +13,16 @@ const generateAdminToken = (adminId: string) => {
     return token;
 }
 
+function generateRandomToken() {
+  let token = "";
+  for (let i = 0; i < 6; i++) {
+      token += Math.floor(Math.random() * 10);
+  }
+  return token;
+}
 
-function convertToHumanFriendlyDate(dateString) {
+
+function convertToHumanFriendlyDate(dateString: any) {
     const date = new Date(dateString);
     return date.toLocaleString('en-US', {
       year: 'numeric',
@@ -33,4 +41,5 @@ export {
     encryptPassword,
     comparePassword,
     convertToHumanFriendlyDate,
+    generateRandomToken
 }

@@ -11,11 +11,17 @@ const options = {
     },
     servers: [
       {
-        url: 'https://mybrandbackend-4e8h.onrender.com/api',
+        url: 'http://localhost:9090/api',
+        description: "Local Server"
       },
+      {
+        url: 'https://mybrandbackend-4e8h.onrender.com/api',
+        description: "Deployed Server"
+      }
     ],
   },
-  apis: ['./src/routes/*.ts'],
+  // apis: ['./src/routes/*.ts'],
+  apis: ['./src/middlewares/swaggerAPIs.ts'],
 };
 
 const specs = swaggerJsdoc(options);

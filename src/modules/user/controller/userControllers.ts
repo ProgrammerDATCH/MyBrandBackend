@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { comparePassword, encryptPassword, generateToken } from '../../../utils'
-import { createUser, deleteUserByEmail, findUserByEmail, getAllRegisteredUsers, getUserInfo, updateUserByEmail } from "../repository/userRepository";
+import { comparePassword, encryptPassword, generateRandomToken, generateToken } from '../../../utils'
+import { addUserToken, checkToken, createUser, deleteUserByEmail, findUserByEmail, getAllRegisteredUsers, getUserInfo, updateUserByEmail, verifyUserStatus } from "../repository/userRepository";
+import sendEmail from "../../../middlewares/sendEmail";
 
 const registerUser = async (req: Request, res: Response)=>{
     const {name, email, password} = req.body;
@@ -12,7 +13,12 @@ const registerUser = async (req: Request, res: Response)=>{
         email: email,
         password: hashedPassword
     };
-    const newCreatedUser = await createUser(newUser);;
+    const newCreatedUser = await createUser(newUser);
+    //createToken & send Email
+    const newToken = generateRandomToken();
+    await addUserToken(newCreatedUser.id, newToken);
+    await sendEmail(`Email Verification - My Brand`, `<p><p>Hello ${name}, <br>Your Email verificaton code is: <h2> ${newToken} </h2></p><p>Remember, beware of scams and keep this one-time verification code confidential<br><br>Thanks.</p>`, email);
+    //end
     res.json({status: true, message: newCreatedUser});
 }
 
@@ -22,6 +28,16 @@ const getAllUsers = async (req: Request, res: Response)=>{
 
 const checkUser = async (req: Request, res: Response)=>{
     res.json({status: true, message: await getUserInfo((req as any).userId)});
+}
+
+const verifyUser = async (req: Request, res: Response)=>{
+    const {email, token} = req.body;
+    const user = await findUserByEmail(email)
+    if(!user) return res.json({status: false, message: "No User with that email."});
+    const foundToken = await checkToken(user.id, token);
+    if(!foundToken) return res.json({status: false, message: "Invalid Token"});
+    await verifyUserStatus(user.id)
+    res.json({status: true, message: `User ${user.name} verified successfully.`});
 }
 
 const loginUser = async (req: Request, res: Response)=>{
@@ -58,5 +74,6 @@ export {
     loginUser,
     deleteUser,
     updateUser,
-    checkUser
+    checkUser,
+    verifyUser
 }

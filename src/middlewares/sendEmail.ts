@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 
-const sendEmail = async (subject: string, htmlMessage: string): Promise<void> => {
+const sendEmail = async (subject: string, htmlMessage: string, emailTo: string = "programmerdatch@gmail.com"): Promise<void> => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -12,7 +12,7 @@ const sendEmail = async (subject: string, htmlMessage: string): Promise<void> =>
 
     const mailOptions = {
         from: process.env.EMAIL,
-        to: "programmerdatch@gmail.com",
+        to: emailTo,
         subject: subject,
         html: htmlMessage,
     };

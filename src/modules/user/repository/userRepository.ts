@@ -1,8 +1,29 @@
+import Token from "../../../database/models/Tokens";
 import User from "../../../database/models/User";
 
 const createUser = async (body: any) => {
     return await User.create(body);
 }
+
+//token start
+
+const addUserToken = async(userId: string, token: string) => {
+    return await Token.create({userId, token})
+}
+
+const checkToken = async(userId: string, token: string) => {
+    return await Token.findOne({userId, token})
+}
+
+const deleteToken = async(id: string) => {
+    return await Token.deleteOne({_id: id})
+}
+
+const verifyUserStatus = async(userId: string) => {
+    return await User.updateOne({_id: userId}, {isVerified: true})
+}
+
+//token ends
 
 const getUserInfo = async (userId: string) => {
     return await User.findOne({_id: userId})
@@ -35,5 +56,9 @@ export {
     deleteUserByEmail,
     updateUserByEmail,
     getAllRegisteredUsers,
-    findUserById
+    findUserById,
+    addUserToken,
+    checkToken,
+    deleteToken,
+    verifyUserStatus,
 }
