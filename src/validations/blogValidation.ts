@@ -3,6 +3,7 @@ import Joi from 'joi';
 const idRegex = /^[0-9a-fA-F]{24}$/;
 
 const editBlog = Joi.object({
+  id: Joi.string().required(),
   title: Joi.string().required(),
   description: Joi.string().required(),
 });
