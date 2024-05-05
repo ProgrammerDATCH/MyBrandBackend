@@ -30,3 +30,32 @@ const swaggerSetup = (app: any) => {
 };
 
 export default swaggerSetup;
+
+
+/**
+ * @swagger
+ * /user/login:
+ *  post:
+ *    summary: Login user to get a token
+ *    tags: [User]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              email:
+ *                type: string
+ *              password:
+ *                type: string
+ *            required:
+ *              - email
+ *              - password
+ *    responses:
+ *      200:
+ *        description: Loin successfully
+ *      400:
+ *        description: Invalid Credentials
+ *
+**/

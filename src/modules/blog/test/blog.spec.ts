@@ -35,12 +35,25 @@ function registerAndLoginUser(callback: Function) {
     });
 }
 
+function loginAdmin(callback: Function) {
+  router()
+  .post("/api/admin/login")
+  .send({
+    email: process.env.ADMIN_EMAIL,
+    password: process.env.ADMIN_PASSWORD
+  })
+  .end((err, response)=>{
+    if (err) callback(err, null);
+    callback(null, response.body.message.token);
+  })
+}
+
 describe("Blog Test Cases", () => {
 
     let createdBlogId = "";
 
     let token="";
-    let createdTodo = {};
+    let adminToken="";
     const fakeId = "609d2071278a0914dca23b99";
 
   before(function (done) {
@@ -49,7 +62,10 @@ describe("Blog Test Cases", () => {
         return done(error);
       }
       token = retrievedToken;
-      done();
+      loginAdmin((err: any, givenToken: string)=>{
+        token = givenToken;
+        done();
+      })
     });
   });
 
@@ -108,6 +124,8 @@ describe("Blog Test Cases", () => {
           done(error);
         });
     });
+
+
     
     it("Should be able to delete created blog", (done) => {
         router()
